@@ -1,0 +1,60 @@
+/* Basic page styling */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+    background-color: #262424;
+    transition: background-color 0.4s ease;
+    color: #fff;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* Color buttons */
+.button {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    border: 2px solid #333;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.button:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Specific colors */
+#gray {
+    background-color: gray;
+}
+
+#white {
+    background-color: white;
+
+}
+
+#blue {
+    background-color: blue;
+}
+
+#yellow {
+    background-color: yellow;
+}
+
+#black {
+    background-color: black;
+}
+
+#green {
+    background-color: green;
+}
+
+#pink {
+    background-color: pink;
+}

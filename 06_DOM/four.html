@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>learn DOM</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+    <script>
+        // create li
+        function addLanguage(langName) {
+            const li = document.createElement('li');
+            li.innerHTML = langName
+            document.querySelector('.language').
+                appendChild(li);
+        }
+        addLanguage("java")
+        addLanguage("python")
+        addLanguage("ruby")
+
+        // create li optimized way
+        function addOptiLang(langName) {
+            const li = document.createElement('li')
+            li.appendChild(document.createTextNode(langName))
+            document.querySelector('.language').appendChild(li);
+        }
+        addOptiLang("C")
+        addOptiLang("C++")
+
+        // Edit 
+        const secondLang = document.querySelector('li:nth-child(2)')
+        // secondLang.innerHTML = "nextJs"
+        const newLi = document.createElement('li')
+        newLi.textContent = 'NextJs'
+        secondLang.replaceWith(newLi)
+        newLi.style.color = "yellow"
+
+        // Edit
+        const firstLang = document.querySelector('li:nth-child(1)')
+        firstLang.outerHTML = '<li>MongoDB</li>'
+
+        // Remove
+        const lastLang = document.querySelector('li:last-child')
+        lastLang.remove()
+        
+    </script>
+</body>
+
+</html>

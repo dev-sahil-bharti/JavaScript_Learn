@@ -1,0 +1,95 @@
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Background */
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #89f7fe, #66a6ff);
+}
+
+/* Container box */
+.container {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  text-align: center;
+}
+
+/* Heading */
+.container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form labels */
+.container label {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  text-align: left;
+}
+
+/* Input fields */
+.container input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.container input:focus {
+  border-color: #66a6ff;
+  box-shadow: 0 0 5px rgba(102, 166, 255, 0.5);
+}
+
+/* Button */
+.container button {
+  width: 100%;
+  padding: 10px;
+  background: #66a6ff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.container button:hover {
+  background: #4a8fe7;
+}
+
+/* Results */
+#results {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Weight Guide */
+.container h3 {
+  margin-top: 20px;
+  color: #333;
+}
+
+.container p {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #555;
+}
