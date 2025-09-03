@@ -1,0 +1,99 @@
+Skip to content
+Chat history
+
+You said:
+js image on click full viwe
+ChatGPT said:
+Aap ek image gallery ya single image ke liye "click → full screen view" feature banana chahte ho. Yeh kaam simple HTML, CSS aur JavaScript se ho jaata hai.
+
+Niche ek basic example de raha hoon 👇
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Full View</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Small image */
+    .image {
+      width: 200px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .image:hover {
+      transform: scale(1.05);
+    }
+
+    /* Fullscreen overlay */
+    .overlay {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    /* Close button */
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Click on Image to View in Fullscreen</h2>
+  <img src="https://via.placeholder.com/400" alt="Sample" class="image" id="myImg">
+
+  <!-- Full view overlay -->
+  <div class="overlay" id="overlay">
+    <span class="close" id="closeBtn">&times;</span>
+    <img id="fullImg">
+  </div>
+
+  <script>
+    const img = document.getElementById("myImg");
+    const overlay = document.getElementById("overlay");
+    const fullImg = document.getElementById("fullImg");
+    const closeBtn = document.getElementById("closeBtn");
+
+    img.addEventListener("click", () => {
+      overlay.style.display = "flex";
+      fullImg.src = img.src; // clicked image ka src use hoga
+    });
+
+    closeBtn.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+
+    // overlay par click karne se bhi band ho jaye
+    overlay.addEventListener("click", (e) => {
+      if (e.target !== fullImg) {
+        overlay.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
+ 

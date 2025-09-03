@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basic events</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .items {
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .items:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .items img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .items img:hover {
+        transform: scale(1.1);
+    }
+</style>
+
+<body>
+    <div class="container">
+        <ul id="images">
+            <li class="items"><img src="https://cdn.pixabay.com/photo/2025/08/12/08/49/cat-9769723_1280.jpg"
+                    alt="image1" id="cat"></li>
+            <li class="items"><img src="https://cdn.pixabay.com/photo/2020/09/27/03/38/woman-5605529_640.jpg"
+                    alt="image2" id="run"></li>
+            <li class="items"><img src="https://cdn.pixabay.com/photo/2022/05/26/22/14/lake-7223904_1280.jpg"
+                    alt="image3" id="hut"></li>
+            <li class="items" id="girl"><img src="https://cdn.pixabay.com/photo/2025/08/12/05/06/woman-9769334_1280.jpg"
+                    alt="image4"></li>
+            <li><a h ref="https://google.com" id="google">google</a></li>
+        </ul>
+    </div>
+    <script>
+        <!-- basic events -->
+        // ->> 01
+        // document.getElementById('girl').onclick = function () {
+        //     alert('this is girl')
+        // }
+
+        // document.getElementById('girl').addEventListener('click', function () {
+        //     alert('this is black girl')
+        // })
+
+        // type, timestamp, defaultPrevented
+        // target, toElement, srcElement, currentTarget,
+        // clientX, clientY, screenX, screenY
+        // altkey, ctrlkey, shiftkey, keyCode
+
+        // document.getElementById('hut').addEventListener('dblclick', function () {
+        //     alert('Double click event on Hut image!')
+        // });
+
+        // By defult third vale is false
+        // document.getElementById('cat').addEventListener('click', function (e) {
+        //     console.log(e);
+        // }, false)
+
+        // ->> 2
+        // event propogation
+        // document.getElementById('image').addEventListener('click', function (e) {
+        //     console.log('cliked inside the ul');
+        // }, false)
+        // document.getElementById('cat').addEventListener('click', function (e) {
+        //     console.log('cliked cat');
+        //     e.stopPropagation()
+        // }, false)
+
+
+        // // ->> 3
+        // // prevent
+        // document.getElementById('google').addEventListener('click', (e) => {
+        //     console.log('google clicked');
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        // }, false)
+
+        // ->> 4
+        document.querySelector("#images").addEventListener('click', function (e) {
+            console.log(e.target.tagName);
+            if (e.target.tagName === 'IMG' || e.target.tagName === 'A') {
+                console.log(e.target.id);
+
+                let removeIt = e.target.parentNode
+                // removeIt.remove();
+                removeIt.parentNode.removeChild(removeIt)
+            }
+        }, false);
+
+        if (e.target.tagName === "IMG") {
+            overlay.style
+        }
+    </script>a
+</body>
+
+</html>
