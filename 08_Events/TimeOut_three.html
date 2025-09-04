@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      display: flex;
+
+      justify-content: center;
+      background-color: #333;
+      color: #fff;
+    }
+
+    div {
+
+      border: 2px solid green;
+      text-align: center;
+      margin-top: 150px;
+      padding: 20px;
+      width: 400px;
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    #stop {
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #start {
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1>Learn JavaScript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </div>
+  <script>
+
+    // setTimeout Function 
+    /* setTimeout(function () {
+       console.log("learn javaScript");
+     }, 2000) */
+
+    const langName = function () {
+      console.log("learn react")
+    }
+
+
+    let intervalId;
+    let index = 0;
+
+    const changeHeading = function () {
+      document.querySelector('h1').innerHTML = "Learn React"
+    }
+    const changeHeading1 = function () {
+      document.querySelector('h1').innerHTML = "Learn Python"
+    }
+    const changeHeading2 = function () {
+      document.querySelector('h1').innerHTML = "Learn Java"
+    }
+
+    const playlist = [changeHeading, changeHeading1, changeHeading2];
+
+    /*
+        const changeMeStop = setTimeout(() => {
+          changeHeading();
+          setTimeout(() => {
+            changeHeading1();
+            setTimeout(() => {
+              changeHeading2();
+            }, 2000);
+          }, 2000);
+        }, 2000);
+    */
+
+    //start
+    document.querySelector('#start').addEventListener('click', function () {
+      if (!intervalId) {
+        intervalId = setInterval(() => {
+          playlist[index]();
+          index = (index + 1) % playlist.length;
+        }, 2000);
+        console.log("STARTED");
+      }
+    });
+
+    //stop
+    document.querySelector('#stop').addEventListener('click', function () {
+      clearInterval(intervalId)
+      intervalId = null;
+      console.log("STOPED");
+        
+    });
+
+
+
+
+  </script>
+</body>
+
+</html>
