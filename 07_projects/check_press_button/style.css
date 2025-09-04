@@ -1,0 +1,104 @@
+/* reset + variables */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root{
+  --bg1:#0f1226;
+  --bg2:#1c1f3a;
+  --card:#ffffff12;
+  --card-border:#ffffff2a;
+  --text:#e9ecff;
+  --accent:#7c8cfb;
+}
+
+/* full-screen center */
+body{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  background: radial-gradient(1200px 800px at 20% 10%, #233 0%, transparent 60%),
+              linear-gradient(135deg, var(--bg1), var(--bg2));
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color:var(--text);
+}
+
+/* outer card */
+.box{
+  width:min(90vw, 720px);
+  padding: clamp(18px, 3vw, 36px);
+  border-radius: 18px;
+  background: var(--card);
+  border:1px solid var(--card-border);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  box-shadow: 0 10px 30px #00000066, inset 0 1px 0 #ffffff1a;
+  position: relative;
+  overflow: hidden;
+}
+
+/* floating accent glow */
+.box::before{
+  content:"";
+  position:absolute; inset:-40%;
+  background: conic-gradient(from 180deg at 50% 50%, transparent 0 30%, #7c8cfb44 30% 60%, transparent 60% 100%);
+  filter: blur(40px);
+  animation: spin 14s linear infinite;
+  pointer-events:none;
+  opacity:.6;
+}
+
+/* inner container */
+#insert{
+  display:grid;
+  place-items:center;
+  gap: 12px;
+  min-height: 160px;
+}
+
+/* headline text */
+.key{
+  font-size: clamp(20px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: .4px;
+  line-height: 1.15;
+  text-align:center;
+  text-wrap: balance;
+  color: var(--text);
+  text-shadow: 0 1px 0 #0008, 0 6px 24px #7c8cfb55;
+  position: relative;
+  padding-inline: 6px;
+  transition: transform .25s ease, filter .25s ease;
+  cursor: default;
+}
+
+/* underline shimmer */
+.key::after{
+  content:"";
+  display:block;
+  height: 3px;
+  width: 60%;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  filter: drop-shadow(0 0 8px #7c8cfbaa);
+  animation: shimmer 2.2s ease-in-out infinite;
+}
+
+/* hover / focus “magic” */
+.box:hover .key{
+  transform: translateY(-2px) scale(1.015);
+  filter: drop-shadow(0 8px 22px #7c8cfb88);
+}
+
+/* small screens */
+@media (max-width:520px){
+  .box{ padding: 20px; border-radius: 14px; }
+  #insert{ min-height: 140px; }
+}
+
+/* animations */
+@keyframes shimmer{
+  0%,100%{ opacity:.55; width:48%; }
+  50%{ opacity:1; width:70%; }
+}
+@keyframes spin{
+  to{ transform: rotate(360deg); }
+}
