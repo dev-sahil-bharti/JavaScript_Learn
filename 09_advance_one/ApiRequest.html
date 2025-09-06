@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API request</title>
+    <style>
+       body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #a78bfa, #4f46e5);
+    margin: 0;
+}
+
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 280px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #4f46e5;
+}
+
+.card h2 {
+    margin: 10px 0;
+    font-size: 22px;
+    color: #333;
+}
+
+.card p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #4338ca;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 12px;
+    text-decoration: none;
+    background: #10b981;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.card a:hover {
+    background: #059669;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Value State Description 
+    0 UNSENT Client has been created. open() not called yet.
+    1 OPENED open() has been called.
+    2 HEADERS_RECEIVED send() has been called, and headers and status are available.
+    3 LOADING Downloading; responseText holds partial data.
+    4 DONE The operation is complete. -->
+    <div id="root"></div>
+    <script>
+        const root = document.getElementById("root");
+        // create card
+        const card = document.createElement('div')
+        card.className = "card"
+
+        //careate text landing
+        const msg = document.createElement('p')
+        msg.textContent = "Click the Button the Load the GitHub data"
+        card.appendChild(msg)
+
+        //button
+        const btn = document.createElement('button')
+        btn.textContent = "Load data";
+        card.appendChild(btn)
+
+        root.appendChild(card)
+
+
+        // fatch github data 
+        btn.addEventListener("click", () => {
+            const xhr = new XMLHttpRequest()
+            const requestUrl = "https://api.github.com/users/dev-sahil-bharti"
+            xhr.open('GET', requestUrl)
+            xhr.onreadystatechange = function () {
+                console.log(xhr.readyState)
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const data = JSON.parse(this.responseText);
+                    /*
+                    console.log(typeof data)
+                    console.log("Name:  " + data.name)
+                    console.log("Followers: " + data.followers)
+                    console.log("Followers: " + data.avatar_url)
+                    */
+                    //clear card
+                    card.innerHTML = ""
+
+                    //avtar
+                    const img = document.createElement('img')
+                    img.src = data.avatar_url
+                    img.alt = data.name
+                    card.appendChild(img)
+
+                    //name
+                    const name = document.createElement('h2')
+                    name.textContent = data.name
+                    card.appendChild(name)
+
+                    //followers
+                    const followers = document.createElement('p')
+                    followers.textContent = `followers: ${data.followers}`
+                    card.appendChild(followers)
+
+                    //followig
+                    const following = document.createElement('p')
+                    following.textContent = `following: ${data.following}`
+                    card.appendChild(following)
+
+                    //profilr link
+                    const link = document.createElement('a')
+                    link.href = data.html_url
+                    link.target = "_blank"
+                    link.textContent = "View Profile"
+                    card.appendChild(link)
+                }
+            };
+            xhr.send();
+        });
+        // find image by url
+        // make a card
+        // click button the show data 
+    </script>
+</body>
+
+</html>
